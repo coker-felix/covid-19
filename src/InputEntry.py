@@ -20,9 +20,12 @@ class InputData:
         elif self.period_type == 'weeks':
             # return math.floor((self.time_to_elapse * 7)/3)
             return (self.time_to_elapse * 7)//3
+        elif self.period_type == 'weeks':
+            # return math.floor((self.time_to_elapse * 7)/3)
+            return (self.time_to_elapse * 30)//3    
         else:
             # return math.floor((self.time_to_elapse * 30)/3)
-            return (self.time_to_elapse * 30)//3  
+            return (self.time_to_elapse * 360)//3  
                 
 
     def getPeriod(self):

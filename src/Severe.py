@@ -1,30 +1,42 @@
-from InputEntry import InputData
 
 def computeForSevereImpact(data):
-    # Create new instance of InputData class
-    impactdata = InputData(data)
+    average_Daily_Income_InUSD = data['region']['avgDailyIncomeInUSD']
+    average_Daily_Income_population = data['region']['avgDailyIncomePopulation'] 
+    time_to_elapse = data['timeToElapse']
+    reported_cases = data['reportedCases']
+    total_hospital_beds = data['totalHospitalBeds']
+    period_type = data['periodType']
+
+
+    if period_type == 'days':
+        period = int(time_to_elapse)
+    elif period_type == 'weeks':
+        period = int(time_to_elapse * 7)
+    elif period_type == 'months':
+        period = int(time_to_elapse * 30)
+    else:
+        period = int(time_to_elapse * 360)
+
+    factor = int(period//3)    
 
     # Make computations
     # CHALLENGE 1
-    currentlyInfected = impactdata.reported_cases * 50
-    factor = impactdata.getFactor()
+    currentlyInfected = reported_cases * 50
     infectionsByRequestedTime = currentlyInfected * (2 ** factor)
-    infectionsByRequestedTime = round(infectionsByRequestedTime)
+    infectionsByRequestedTime = int(infectionsByRequestedTime)
 
     # CHALLENGE 2
     severeCasesByRequestedTime = (15/100) *  infectionsByRequestedTime
-    severeCasesByRequestedTime = round(severeCasesByRequestedTime)
-    hospitalBedsByRequestedTime  = ((35/100) * impactdata.total_hospital_beds) - severeCasesByRequestedTime
-    hospitalBedsByRequestedTime = round(hospitalBedsByRequestedTime)
+    severeCasesByRequestedTime = int(severeCasesByRequestedTime)
+    hospitalBedsByRequestedTime  = ((35/100) * total_hospital_beds) - severeCasesByRequestedTime
+    hospitalBedsByRequestedTime = int(hospitalBedsByRequestedTime)
 
     # CHALLENGE 2
     casesForICUByRequestedTime = (5/100) * infectionsByRequestedTime
-    casesForICUByRequestedTime = round(casesForICUByRequestedTime)
+    casesForICUByRequestedTime = int(casesForICUByRequestedTime)
     casesForVentilatorsByRequestedTime = (2/100) * infectionsByRequestedTime
-    casesForVentilatorsByRequestedTime = round(casesForVentilatorsByRequestedTime)
-
-    period = impactdata.getPeriod()
-    dollarsInFlight = infectionsByRequestedTime * impactdata.average_Daily_Income_population * impactdata.average_Daily_Income_InUSD * period
+    casesForVentilatorsByRequestedTime = int(casesForVentilatorsByRequestedTime)
+    dollarsInFlight = infectionsByRequestedTime * average_Daily_Income_population * average_Daily_Income_InUSD * period
     dollarsInFlight = round(dollarsInFlight, 2)
 
     data = {}
