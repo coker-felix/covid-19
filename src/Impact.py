@@ -38,7 +38,7 @@ def computeForImpact(data):
     casesForVentilatorsByRequestedTime = int(casesForVentilatorsByRequestedTime)
 
     dollarsInFlight = infectionsByRequestedTime * average_Daily_Income_population * average_Daily_Income_InUSD * period
-    dollarsInFlight = round(dollarsInFlight, 2)
+    dollarsInFlight = float(dollarsInFlight, 2)
 
     data = {}
     data['currentlyInfected'] = currentlyInfected
