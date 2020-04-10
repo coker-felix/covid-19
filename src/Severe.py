@@ -1,4 +1,4 @@
-
+import math
 def computeForSevereImpact(data):
     average_Daily_Income_InUSD = data['region']['avgDailyIncomeInUSD']
     average_Daily_Income_population = data['region']['avgDailyIncomePopulation'] 
@@ -36,7 +36,7 @@ def computeForSevereImpact(data):
     casesForICUByRequestedTime = int(casesForICUByRequestedTime)
     casesForVentilatorsByRequestedTime = (2/100) * infectionsByRequestedTime
     casesForVentilatorsByRequestedTime = int(casesForVentilatorsByRequestedTime)
-    dollarsInFlight = infectionsByRequestedTime * average_Daily_Income_population * average_Daily_Income_InUSD * period
+    dollarsInFlight = math.trunc((infectionsByRequestedTime * average_Daily_Income_population * average_Daily_Income_InUSD )/ period)
     
 
     data = {}

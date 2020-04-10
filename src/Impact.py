@@ -1,3 +1,4 @@
+import math
 
 def computeForImpact(data):
     average_Daily_Income_InUSD = data['region']['avgDailyIncomeInUSD']
@@ -37,7 +38,7 @@ def computeForImpact(data):
     casesForVentilatorsByRequestedTime = (2/100) * infectionsByRequestedTime
     casesForVentilatorsByRequestedTime = int(casesForVentilatorsByRequestedTime)
 
-    dollarsInFlight = infectionsByRequestedTime * average_Daily_Income_population * average_Daily_Income_InUSD * period
+    dollarsInFlight = math.trunc((infectionsByRequestedTime * average_Daily_Income_population * average_Daily_Income_InUSD )/ period)
     
 
     data = {}
@@ -50,4 +51,6 @@ def computeForImpact(data):
     data['dollarsInFlight'] = dollarsInFlight
     impactResult = data
     return impactResult
+
+
 
