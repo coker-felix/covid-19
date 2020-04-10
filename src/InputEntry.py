@@ -15,11 +15,14 @@ class InputData:
 
     def getFactor(self):
         if self.period_type == 'days':
-            return math.floor((self.time_to_elapse)/3)
+            # return math.floor((self.time_to_elapse)/3)
+            return (self.time_to_elapse)//3
         elif self.period_type == 'weeks':
-            return math.floor((self.time_to_elapse * 7)/3)
+            # return math.floor((self.time_to_elapse * 7)/3)
+            return (self.time_to_elapse * 7)//3
         else:
-            return math.floor((self.time_to_elapse * 30)/3)  
+            # return math.floor((self.time_to_elapse * 30)/3)
+            return (self.time_to_elapse * 30)//3  
                 
 
     def getPeriod(self):

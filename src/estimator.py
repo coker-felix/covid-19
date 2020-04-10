@@ -19,6 +19,24 @@ def estimator(data):
 
 
 
+if __name__ == "__main__":
+  data = {}
+  data['region'] = {}
+  data['region']['name'] = "Africa"
+  data['region']['avgAge'] =  19.7
+  data['region']['avgDailyIncomeInUSD'] = 4
+  data['region']['avgDailyIncomePopulation']  = 0.73 
+  data['timeToElapse'] = 38 
+  data['reportedCases'] = 2747
+  data['population'] = 92931687
+  data['totalHospitalBeds'] = 678874
+  data['periodType'] = "days"
+
+  # print(data)
+  # print(estimator(data))
+  with open('data.json', 'w') as outfile:
+      json.dump(estimator(data), outfile)
+
 
 
 
