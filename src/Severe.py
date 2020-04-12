@@ -37,6 +37,8 @@ def computeForSevereImpact(data):
     casesForVentilatorsByRequestedTime = (2/100) * infectionsByRequestedTime
     casesForVentilatorsByRequestedTime = int(casesForVentilatorsByRequestedTime)
     dollarsInFlight = math.trunc((infectionsByRequestedTime * average_Daily_Income_population * average_Daily_Income_InUSD )/ period)
+    dollarsInFlight = int(dollarsInFlight)
+
     
 
     data = {}
